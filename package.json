@@ -1,0 +1,11 @@
+{
+  "name": "vgt-scraper",
+  "version": "1.0.0",
+  "main": "scrape.js",
+  "type": "module",
+  "scripts": {
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
