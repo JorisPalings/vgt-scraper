@@ -1,6 +1,6 @@
 import fs from 'fs'
 
-console.time('total')
+console.time('Total time')
 
 const regionsResponse = await fetch('https://woordenboek.vlaamsegebarentaal.be/api/regions')
 const regions = await regionsResponse.json() // 10.895
