@@ -116,33 +116,29 @@ const uniqueGlossNames = glossNames.filter((glossName, index, self) =>
     index === self.findIndex(g => g === glossName)
 )
 signs = uniqueGlossNames.map(glossName => {
+    const matchingSigns = signs.filter(sign => sign.glossName === glossName)
     return {
         g: glossName,
-        s: signs
-            .filter(sign => sign.glossName === glossName)
-            .map(sign => {
-                return {
-                    id: sign.signId,
-                    r: sign.regions
-                        .map(region => {
-                            if(region === 'Vlaanderen') return '*'
-                            if(region === 'Antwerpen') return 'A'
-                            if(region === 'Oost-Vlaanderen') return 'O'
-                            if(region === 'West-Vlaanderen') return 'W'
-                            if(region === 'Vlaams-Brabant') return 'V'
-                            if(region === 'Limburg') return 'L'
-                            if(region === 'Unknown') return '?'
-                        })
-                        .sort(),
-                    l: sign.locations ? sign.locations : [],
-                    c: sign.categories ? sign.categories : [],
-                    h: sign.handshapes ? sign.handshapes : [],
-                    t: sign.translations,
-                    v: sign.video
-                        .replace('https://vlaamsegebarentaal.be/signbank/dictionary/protected_media/glossvideo/', '')
-                        .replace(`-${sign.signId}.mp4`, '')
-                }
-            })
+        c: matchingSigns.map(sign => sign.categories)[0],
+        t: matchingSigns.map(sign => sign.translations)[0],
+        s: matchingSigns.map(sign => {
+            return {
+                id: sign.signId,
+                r: sign.regions.map(region => {
+                        if(region === 'Vlaanderen') return '*'
+                        if(region === 'Antwerpen') return 'A'
+                        if(region === 'Oost-Vlaanderen') return 'O'
+                        if(region === 'West-Vlaanderen') return 'W'
+                        if(region === 'Vlaams-Brabant') return 'V'
+                        if(region === 'Limburg') return 'L'
+                        if(region === 'Unknown') return '?'
+                    }).sort(),
+                l: sign.locations ? sign.locations : [],
+                h: sign.handshapes ? sign.handshapes : [],
+                v: sign.video.replace('https://vlaamsegebarentaal.be/signbank/dictionary/protected_media/glossvideo/', '')
+                    .replace(`-${sign.signId}.mp4`, '')
+            }
+        })
     }
 })
 console.log(`${signs.length} signs remain after grouping signs by glossName`)
