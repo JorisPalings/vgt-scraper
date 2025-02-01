@@ -119,7 +119,7 @@ signs = uniqueGlossNames.map(glossName => {
     const matchingSigns = signs.filter(sign => sign.glossName === glossName)
     return {
         g: glossName,
-        c: matchingSigns.map(sign => sign.categories)[0],
+        // c: matchingSigns.map(sign => sign.categories)[0],
         t: matchingSigns.map(sign => sign.translations)[0],
         s: matchingSigns.map(sign => {
             return {
@@ -133,8 +133,8 @@ signs = uniqueGlossNames.map(glossName => {
                         if(region === 'Limburg') return 'L'
                         if(region === 'Unknown') return '?'
                     }).sort(),
-                l: sign.locations ? sign.locations : [],
-                h: sign.handshapes ? sign.handshapes : [],
+                // l: sign.locations ? sign.locations : [],
+                // h: sign.handshapes ? sign.handshapes : [],
                 v: sign.video.replace('https://vlaamsegebarentaal.be/signbank/dictionary/protected_media/glossvideo/', '')
                     .replace(`-${sign.signId}.mp4`, '')
             }
